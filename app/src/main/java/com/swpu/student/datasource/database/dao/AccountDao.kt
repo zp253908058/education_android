@@ -16,6 +16,6 @@ import com.swpu.student.model.AccountEntity
 @Dao
 interface AccountDao {
 
-    @Query("SELECT * FROM account order by last_login_date limit 1")
+    @Query("SELECT * FROM accountLiveData order by last_login_date desc limit 1")
     fun getLastAccount(): LiveData<AccountEntity>
 }

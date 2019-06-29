@@ -14,8 +14,8 @@ import kotlin.reflect.KProperty
  * @see AccountEntity
  * @since 2019-06-27
  */
-@Entity(tableName = "account")
-data class AccountEntity(@ColumnInfo(name = "student_number") val number: String, @ColumnInfo val password: String) {
+@Entity(tableName = "accountLiveData")
+data class AccountEntity(@ColumnInfo(name = "student_number") var number: String, @ColumnInfo var password: String) {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo
     var id: Long = 0
