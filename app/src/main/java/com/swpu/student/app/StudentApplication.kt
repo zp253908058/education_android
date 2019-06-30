@@ -2,6 +2,7 @@ package com.swpu.student.app
 
 import android.app.Application
 import com.swpu.student.datasource.database.AppDatabase
+import com.swpu.student.util.Toaster
 
 /**
  * Class description:
@@ -16,5 +17,6 @@ class StudentApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         AppDatabase.initDatabase(this)
+        Toaster.initialize(this)
     }
 }

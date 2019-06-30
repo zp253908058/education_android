@@ -4,8 +4,6 @@ import androidx.lifecycle.LiveData
 import com.swpu.student.datasource.database.AppDatabase
 import com.swpu.student.datasource.database.dao.AccountDao
 import com.swpu.student.model.AccountEntity
-import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.withContext
 
 /**
  * Class description:
@@ -17,7 +15,9 @@ import kotlinx.coroutines.withContext
  */
 class AccountRepository {
 
-    val mAccountDao: AccountDao = AppDatabase.getInstance().accountDao()
+    private val mAccountDao: AccountDao = AppDatabase.getInstance().accountDao()
 
     fun getLastAccount(): LiveData<AccountEntity> = mAccountDao.getLastAccount()
+
+    fun addAccount(accountEntity: AccountEntity) = mAccountDao.addAccount(accountEntity)
 }
