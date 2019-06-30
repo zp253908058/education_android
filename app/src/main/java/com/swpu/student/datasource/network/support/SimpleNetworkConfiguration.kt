@@ -1,7 +1,6 @@
 package com.swpu.student.datasource.network.support
 
 import androidx.annotation.CallSuper
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.Call
 import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
@@ -26,15 +25,15 @@ open class SimpleNetworkConfiguration : NetworkConfigurationAdapter {
         private const val WINDOWS_HOST = "192.168.1.28"
         private const val MAC_HOST = "10.29.7.138"
         private const val SERVER_HOST = "47.106.84.158"
-        private const val HOST = MAC_HOST
-        private const val TIMEOUT = 30
+        private const val HOST = WINDOWS_HOST
+        private const val TIMEOUT: Long = 30
     }
 
     @CallSuper
     override fun configure(builder: OkHttpClient.Builder): OkHttpClient.Builder {
         builder.retryOnConnectionFailure(true)
         //        builder.authenticator(new TokenAuthenticator());
-        builder.connectTimeout(TIMEOUT.toLong(), TimeUnit.SECONDS)
+        builder.connectTimeout(TIMEOUT, TimeUnit.SECONDS)
         val headerInterceptor = HeaderInterceptor()
         builder.addInterceptor(headerInterceptor)
         //        builder.addInterceptor(new LoggingInterceptor());
@@ -67,7 +66,7 @@ open class SimpleNetworkConfiguration : NetworkConfigurationAdapter {
     }
 
     override fun callAdapterFactories(factories: MutableList<CallAdapter.Factory>) {
-        factories.add(CoroutineCallAdapterFactory())
+
     }
 
     override fun converterFactories(factories: MutableList<Converter.Factory>) {

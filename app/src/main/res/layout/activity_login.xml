@@ -3,7 +3,6 @@
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
                 name="model"
                 type="com.swpu.student.vm.AccountViewModel"/>
@@ -43,15 +42,16 @@
                 <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/tip_student_number">
+                        android:hint="@string/tip_student_number"
+                        android:layout_marginTop="@dimen/top_margin">
 
                     <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/number"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="number"
                             android:lines="1"
                             android:maxEms="16"
-                            app:error="@{model.numberError}"
                             android:text="@={model.number}"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -63,16 +63,15 @@
                         android:hint="@string/tip_password">
 
                     <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/password"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="textPassword"
                             android:lines="1"
                             android:maxEms="16"
-                            app:error="@{model.passwordError}"
-                            android:text="@={model.password}"/>
+                            android:text="@{model.password}"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
-
                 <CheckBox
                         android:id="@+id/login_retain_password"
                         android:layout_width="wrap_content"

@@ -53,7 +53,7 @@ object Toaster {
      * @param margins  margins
      * @param gravity  显示位置
      */
-    fun showToast(message: CharSequence, duration: Int, margins: Margins?, gravity: Gravity?) {
+    fun showToast(message: CharSequence?, duration: Int, margins: Margins?, gravity: Gravity?) {
         Preconditions.checkNotNull(sToast, "Toaster must initialize before use.")
         sToast.setText(message)
         sToast.duration = duration
@@ -73,7 +73,7 @@ object Toaster {
      * @param duration 提示时长
      */
     @JvmOverloads
-    fun showToast(message: CharSequence, duration: Int = Toast.LENGTH_SHORT) {
+    fun showToast(message: CharSequence?, duration: Int = Toast.LENGTH_SHORT) {
         Preconditions.checkNotNull(sToast, "Toaster must initialize before use.")
         sToast.setText(message)
         sToast.duration = duration

@@ -6,7 +6,7 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
-    <style name="ToolbarStyle" parent="Widget.AppCompat.Toolbar">
+    <style name="ToolbarStyle" parent="Widget.MaterialComponents.Toolbar">
         <item name="android:background">?attr/colorPrimary</item>
         <item name="navigationIcon">@drawable/ic_arrow_back_black</item>
         <item name="elevation">4dp</item>
@@ -18,14 +18,16 @@
         <item name="popupTheme">@style/ToolbarPopupTheme</item>
         <!--Toolbar Title和Navigation间距-->
         <item name="contentInsetStartWithNavigation">0dp</item>
+        <item name="titleTextColor">@android:color/white</item>
+        <item name="subtitleTextColor">@android:color/white</item>
     </style>
 
-    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Light">
+    <style name="ToolbarTheme" parent="ThemeOverlay.MaterialComponents.Light">
         <item name="android:colorControlNormal">@android:color/white</item>
         <item name="android:drawableTint">@android:color/white</item>
     </style>
 
-    <style name="ToolbarPopupTheme" parent="ThemeOverlay.AppCompat.Light">
+    <style name="ToolbarPopupTheme" parent="ThemeOverlay.MaterialComponents.Light">
         <item name="colorControlActivated">@color/colorPrimary</item>
         <item name="colorControlHighlight">@color/colorPrimary</item>
         <item name="colorControlNormal">@android:color/white</item>
