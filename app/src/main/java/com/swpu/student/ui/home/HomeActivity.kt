@@ -3,8 +3,7 @@ package com.swpu.student.ui.home
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.SubMenu
-import androidx.appcompat.view.menu.SubMenuBuilder
+import android.widget.TextView
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
@@ -15,15 +14,14 @@ import androidx.navigation.Navigation
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
 import com.swpu.student.R
 import com.swpu.student.base.BaseActivity
 import com.swpu.student.databinding.ActivityMainBinding
 import com.swpu.student.datasource.cache.StudentService
 import com.swpu.student.model.EventInfo
-import com.swpu.student.util.Toaster
-import com.swpu.student.vm.EventModelView
+import com.swpu.student.vm.EventViewModel
 import com.swpu.student.vm.StudentViewModel
+import com.swpu.student.vm.TaskViewModel
 
 class HomeActivity : BaseActivity() {
 
@@ -38,7 +36,9 @@ class HomeActivity : BaseActivity() {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navController: NavController
-    private lateinit var eventModelView: EventModelView
+    private lateinit var eventViewModel: EventViewModel
+    private lateinit var taskViewModel: TaskViewModel
+    private lateinit var nameView: TextView
 
     private lateinit var binding: ActivityMainBinding
 
@@ -56,19 +56,23 @@ class HomeActivity : BaseActivity() {
         // Set up ActionBar
         setSupportActionBar(binding.toolbar)
         setupActionBarWithNavController(navController, appBarConfiguration)
-        binding.navigationView.setupWithNavController(navController)
 
         binding.navigationView.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.nav_home -> goHome()
             }
+            drawerLayout.closeDrawers()
             false
         }
 
-        eventModelView = ViewModelProviders.of(this).get(EventModelView::class.java)
-        eventModelView.eventObservable.observe(this, Observer {
+        nameView = binding.navigationView.getHeaderView(0).findViewById(R.id.name)
+
+        eventViewModel = ViewModelProviders.of(this).get(EventViewModel::class.java)
+        taskViewModel = ViewModelProviders.of(this).get(TaskViewModel::class.java)
+        eventViewModel.eventObservable.observe(this, Observer {
             val navMenu = binding.navigationView.menu
-            val subMenu  = navMenu.addSubMenu(R.string.text_event)
+            val subMenu = navMenu.addSubMenu(R.string.text_event)
+            subMenu.setGroupEnabled(1, true)
             it?.forEach { item ->
                 subMenu.add(
                     1,
@@ -78,31 +82,35 @@ class HomeActivity : BaseActivity() {
                 ).setOnMenuItemClickListener {
                     onEventClick(item)
                     true
-                }.isChecked = true
+                }
             }
+            it?.apply { onEventClick(it[0]) }
             events = it
         })
 
         val studentViewModel: StudentViewModel = ViewModelProviders.of(this).get(StudentViewModel::class.java);
         val studentService = getAppService(StudentService::class.java)
         studentService?.apply {
-            studentViewModel.studentObservable.postValue(info);
+            studentViewModel.studentObservable.postValue(info)
         }
 
         studentViewModel.studentObservable.observe(this, Observer {
             it?.apply {
-                eventModelView.startLoadEvent(it.studentNumber)
+                eventViewModel.startLoadEvent(it.studentNumber)
+                nameView.text = it.studentName
             }
         })
     }
 
-    fun goHome() {
+    private fun goHome() {
 
     }
 
     //Event Clicked
-    fun onEventClick(item: EventInfo) {
-        Toaster.showToast("点击了${item.eventName}")
+    private fun onEventClick(item: EventInfo) {
+        drawerLayout.closeDrawers()
+        eventViewModel.loadTasks(item.id)
+        eventViewModel.currentEventObservable.postValue(item)
     }
 
     override fun onSupportNavigateUp(): Boolean {

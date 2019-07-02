@@ -20,3 +20,10 @@ data class EventInfo(
     var id: Long = 0,
     var eventName: String = ""
 )
+
+data class TaskInfo(
+    var id: Long = 0,
+    var taskName: String = "",
+    var taskType: String = "",
+    var taskEndDate: String = ""
+)

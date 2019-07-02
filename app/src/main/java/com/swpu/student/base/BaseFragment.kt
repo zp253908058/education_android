@@ -15,8 +15,7 @@ import androidx.navigation.*
  * @see BaseFragment
  * @since 2019-06-27
  */
-abstract class BaseFragment : Fragment() {
-}
+abstract class BaseFragment : Fragment()
 
 
 //Add Navigation

@@ -10,5 +10,6 @@
     <string name="error_short_password">密码小于6位</string>
     <string name="text_event">我的事件</string>
     <string name="text_home">首页</string>
+    <string name="text_my_group">我的分组</string>
 
 </resources>

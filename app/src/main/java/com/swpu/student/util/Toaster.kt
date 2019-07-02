@@ -3,7 +3,6 @@ package com.swpu.student.util
 import android.content.Context
 import android.widget.Toast
 import androidx.annotation.StringRes
-import androidx.core.util.Preconditions
 
 /**
  * Class description:
@@ -38,14 +37,6 @@ object Toaster {
     }
 
     /**
-     * 取消Toast显示
-     */
-    fun cancel() {
-        Preconditions.checkNotNull(sToast, "Toaster must initialize before use.")
-        sToast.cancel()
-    }
-
-    /**
      * 显示提示消息
      *
      * @param message  提示文本
@@ -54,7 +45,6 @@ object Toaster {
      * @param gravity  显示位置
      */
     fun showToast(message: CharSequence?, duration: Int, margins: Margins?, gravity: Gravity?) {
-        Preconditions.checkNotNull(sToast, "Toaster must initialize before use.")
         sToast.setText(message)
         sToast.duration = duration
         if (margins != null) {
@@ -74,7 +64,6 @@ object Toaster {
      */
     @JvmOverloads
     fun showToast(message: CharSequence?, duration: Int = Toast.LENGTH_SHORT) {
-        Preconditions.checkNotNull(sToast, "Toaster must initialize before use.")
         sToast.setText(message)
         sToast.duration = duration
         sToast.show()

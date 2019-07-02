@@ -3,11 +3,13 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/nav_main"
-            app:startDestination="@id/home_fragment">
+            app:startDestination="@id/task_fragment">
 
     <fragment
-            android:id="@+id/home_fragment"
-            android:name="com.swpu.student.ui.home.HomeFragment"
+            android:id="@+id/task_fragment"
+            android:name="com.swpu.student.ui.task.TaskListFragment"
             android:label="主页"
-            tools:layout="@layout/fragment_main"/>
+            tools:layout="@layout/fragment_task"/>
+
+
 </navigation>
