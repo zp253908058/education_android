@@ -3,8 +3,6 @@ package com.swpu.student.ui.login
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.util.Log
 import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -15,7 +13,6 @@ import com.swpu.student.databinding.ActivityLoginBinding
 import com.swpu.student.datasource.cache.AppServiceRegistry
 import com.swpu.student.datasource.cache.StudentService
 import com.swpu.student.ui.home.HomeActivity
-import com.swpu.student.util.Toaster
 import com.swpu.student.vm.AccountViewModel
 
 /**

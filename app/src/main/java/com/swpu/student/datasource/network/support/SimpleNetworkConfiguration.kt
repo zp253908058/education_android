@@ -25,7 +25,7 @@ open class SimpleNetworkConfiguration : NetworkConfigurationAdapter {
         private const val WINDOWS_HOST = "192.168.1.28"
         private const val MAC_HOST = "10.29.7.138"
         private const val SERVER_HOST = "47.106.84.158"
-        private const val HOST = WINDOWS_HOST
+        private const val HOST = MAC_HOST
         private const val TIMEOUT: Long = 30
     }
 

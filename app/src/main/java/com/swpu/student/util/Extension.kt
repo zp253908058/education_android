@@ -1,7 +1,5 @@
 package com.swpu.student.util
 
-import retrofit2.Call
-
 /**
  * Class description:
  *

@@ -15,3 +15,8 @@ data class StudentInfo(
     var sex: String = "",
     var phoneNumber: String = ""
 )
+
+data class EventInfo(
+    var id: Long = 0,
+    var eventName: String = ""
+)

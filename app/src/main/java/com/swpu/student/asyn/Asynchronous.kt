@@ -3,7 +3,6 @@ package com.swpu.student.asyn
 import android.util.Log
 import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.Dispatchers.Main
 
 /**
  * Class description:

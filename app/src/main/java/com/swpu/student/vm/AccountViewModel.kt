@@ -1,12 +1,10 @@
 package com.swpu.student.vm
 
 import android.app.Application
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import com.swpu.student.R
 import com.swpu.student.asyn.executeRequest
 import com.swpu.student.asyn.executeRunnable
@@ -19,9 +17,6 @@ import com.swpu.student.util.Toaster
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.Job
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import retrofit2.await
 
 /**
@@ -42,15 +37,6 @@ class AccountViewModel(application: Application) : AndroidViewModel(application)
     val accountObservable: LiveData<AccountEntity>
     private val mAccountRepository: AccountRepository = AccountRepository().apply {
         accountObservable = getLastAccount()
-    }
-
-    init {
-        number.observeForever {
-            Toaster.showToast(it)
-        }
-        password.observeForever {
-            Toaster.showToast(it)
-        }
     }
 
     private val viewModelJob = Job()
