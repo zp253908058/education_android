@@ -17,7 +17,6 @@ import androidx.navigation.*
  */
 abstract class BaseFragment : Fragment()
 
-
 //Add Navigation
 abstract class NavigationFragment : BaseFragment() {
     private var mNavController: NavController? = null

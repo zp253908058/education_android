@@ -2,8 +2,8 @@
 
 buildscript {
     ext {
-        navigationVersion = '2.1.0-alpha05'
-        lifecycleVersion = '2.2.0-alpha01'
+        navigationVersion = '2.1.0-alpha06'
+        lifecycleVersion = '2.2.0-alpha02'
         recyclerViewVersion = '1.1.0-alpha06'
         materialVersion = '1.1.0-alpha07'
         coroutinesVersion = "1.2.2"
@@ -15,7 +15,7 @@ buildscript {
         retrofitVersion = '2.6.0'
         glideVersion = '4.9.0'
         loggingInterceptorVersion = '3.14.2'
-        fragmentVersion = "1.1.0-beta01"
+        fragmentVersion = "1.2.0-alpha01"
     }
     repositories {
         maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }

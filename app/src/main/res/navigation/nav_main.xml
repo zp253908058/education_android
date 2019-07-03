@@ -9,7 +9,22 @@
             android:id="@+id/task_fragment"
             android:name="com.swpu.student.ui.task.TaskListFragment"
             android:label="主页"
-            tools:layout="@layout/fragment_task"/>
+            tools:layout="@layout/fragment_task">
+
+        <action
+                android:id="@+id/action_task_fragment_to_task_detail_fragment"
+                app:destination="@id/task_detail_fragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"
+                app:launchSingleTop="true"/>
+    </fragment>
+    <fragment
+            android:id="@+id/task_detail_fragment"
+            android:name="com.swpu.student.ui.task.TaskDetailFragment"
+            android:label="任务详情"
+            tools:layout="@layout/fragment_task_detail"/>
 
 
 </navigation>

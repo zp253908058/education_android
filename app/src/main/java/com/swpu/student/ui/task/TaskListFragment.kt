@@ -2,11 +2,13 @@ package com.swpu.student.ui.task
 
 import android.os.Bundle
 import android.view.*
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import com.swpu.student.R
 import com.swpu.student.base.NavigationFragment
 import com.swpu.student.databinding.FragmentTaskBinding
 import com.swpu.student.vm.EventViewModel
+import com.swpu.student.vm.TaskViewModel
 
 /**
  * Class description:
@@ -18,11 +20,12 @@ import com.swpu.student.vm.EventViewModel
  */
 class TaskListFragment : NavigationFragment() {
 
-    private val eventViewModel: EventViewModel by viewModels()
+    private val eventViewModel: EventViewModel by activityViewModels()
+    private val taskViewModel: TaskViewModel by activityViewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding = FragmentTaskBinding.inflate(inflater, container, false)
-        val adapter = TaskAdapter()
+        val adapter = TaskAdapter(taskViewModel)
         binding.recyclerView.adapter = adapter
         subscribeUi(adapter)
         setHasOptionsMenu(true)
@@ -48,8 +51,8 @@ class TaskListFragment : NavigationFragment() {
     }
 
     private fun subscribeUi(adapter: TaskAdapter) {
-        eventViewModel.taskObservable.observe(viewLifecycleOwner) { tasks ->
-            if (tasks != null) adapter.submitList(tasks)
-        }
+        eventViewModel.taskObservable.observe(viewLifecycleOwner, Observer {
+            if (it != null) adapter.submitList(it)
+        })
     }
 }

@@ -38,6 +38,8 @@
         <item name="appBarLayoutStyle">@style/AppBarLayoutStyle</item>
         <item name="editTextStyle">@style/EditTextStyle</item>
         <item name="textInputStyle">@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox</item>
+
+        <item name="android:windowContentTransitions">true</item>
     </style>
 
     <style name="OptionsMenuStyle" parent="Widget.AppCompat.PopupMenu">

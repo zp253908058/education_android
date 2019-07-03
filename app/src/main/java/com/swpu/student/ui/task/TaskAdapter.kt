@@ -1,8 +1,12 @@
 package com.swpu.student.ui.task
 
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.FragmentNavigator
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.swpu.student.R
@@ -10,6 +14,8 @@ import com.swpu.student.base.DataBindingViewHolder
 import com.swpu.student.databinding.ItemTaskBinding
 import com.swpu.student.model.TaskInfo
 import com.swpu.student.vm.TaskItemViewModel
+import com.swpu.student.vm.TaskViewModel
+
 
 /**
  * Class description:
@@ -19,20 +25,38 @@ import com.swpu.student.vm.TaskItemViewModel
  * @see TaskAdapter
  * @since 2019/7/2
  */
-class TaskAdapter() : ListAdapter<TaskInfo, DataBindingViewHolder<ItemTaskBinding>>(TaskDiffCallback()) {
+class TaskAdapter(private val taskViewModel: TaskViewModel) :
+    ListAdapter<TaskInfo, DataBindingViewHolder<ItemTaskBinding>>(TaskDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataBindingViewHolder<ItemTaskBinding> {
         return DataBindingViewHolder(
-            DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.item_task, parent, false)
+            DataBindingUtil.inflate(
+                LayoutInflater.from(parent.context),
+                R.layout.item_task,
+                parent,
+                false
+            )
         )
     }
 
     override fun onBindViewHolder(holder: DataBindingViewHolder<ItemTaskBinding>, position: Int) {
-        getItem(position).let { info ->
-            with(holder) {
-                binding.model = TaskItemViewModel(info)
-                binding.executePendingBindings()
-            }
+        with(holder) {
+            val item = getItem(position)
+            binding.model = TaskItemViewModel(item)
+            binding.clickListener = createOnClickListener(item)
+            binding.executePendingBindings()
+        }
+    }
+
+    private fun createOnClickListener(item: TaskInfo): View.OnClickListener {
+        return View.OnClickListener {
+            taskViewModel.taskObservable.postValue(item)
+            val direction = TaskListFragmentDirections.actionTaskFragmentToTaskDetailFragment()
+            val extras = FragmentNavigator.Extras.Builder()
+                .addSharedElement(it, it.context.getString(R.string.transition_name_task))
+                .build()
+            Log.e("TaskAdapter", it.javaClass.simpleName)
+            it.findNavController().navigate(direction, extras)
         }
     }
 

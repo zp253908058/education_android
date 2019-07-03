@@ -14,6 +14,7 @@ import androidx.navigation.Navigation
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.swpu.student.R
 import com.swpu.student.base.BaseActivity
 import com.swpu.student.databinding.ActivityMainBinding
@@ -57,13 +58,7 @@ class HomeActivity : BaseActivity() {
         setSupportActionBar(binding.toolbar)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
-        binding.navigationView.setNavigationItemSelectedListener {
-            when (it.itemId) {
-                R.id.nav_home -> goHome()
-            }
-            drawerLayout.closeDrawers()
-            false
-        }
+        binding.navigationView.setupWithNavController(navController)
 
         nameView = binding.navigationView.getHeaderView(0).findViewById(R.id.name)
 
@@ -102,7 +97,7 @@ class HomeActivity : BaseActivity() {
         })
     }
 
-    private fun goHome() {
+    private fun goTasks() {
 
     }
 
