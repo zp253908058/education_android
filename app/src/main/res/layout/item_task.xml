@@ -20,7 +20,6 @@
             android:id="@+id/card_view"
             android:layout_gravity="center"
             app:cardCornerRadius="4dp"
-            android:transitionName="@string/transition_name_task"
             android:transitionGroup="true"
             android:onClick="@{clickListener}">
 

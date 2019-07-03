@@ -12,8 +12,16 @@ import com.swpu.student.model.TaskInfo
  * @see TaskItemViewModel
  * @since 2019/7/3
  */
-class TaskItemViewModel(item: TaskInfo? = null) : ViewModel() {
-    val taskName = ObservableField(item?.taskName)
-    val endDate = ObservableField(item?.taskEndDate)
-    val taskType = ObservableField(item?.taskType)
+class TaskItemViewModel : ViewModel() {
+    var item: TaskInfo? = null
+        set(value) {
+            field = value
+            taskName.set(value?.taskName)
+            endDate.set(value?.taskEndDate)
+            taskType.set(value?.taskType)
+        }
+
+    val taskName = ObservableField<String>()
+    val endDate = ObservableField<String>()
+    val taskType = ObservableField<String>()
 }

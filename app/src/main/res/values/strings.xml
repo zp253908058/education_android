@@ -16,7 +16,7 @@
     <string name="tip_task_end_date">任务结束时间:%s</string>
     <string name="tip_task_commit_type">任务提交类型:%s</string>
 
-
+    <string name="text_add_content">添加内容</string>
 
     <string name="transition_name_task">task_transition</string>
 

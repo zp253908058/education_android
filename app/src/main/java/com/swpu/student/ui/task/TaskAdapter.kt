@@ -1,12 +1,10 @@
 package com.swpu.student.ui.task
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.FragmentNavigator
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.swpu.student.R
@@ -42,7 +40,9 @@ class TaskAdapter(private val taskViewModel: TaskViewModel) :
     override fun onBindViewHolder(holder: DataBindingViewHolder<ItemTaskBinding>, position: Int) {
         with(holder) {
             val item = getItem(position)
-            binding.model = TaskItemViewModel(item)
+            val model = TaskItemViewModel()
+            model.item = item
+            binding.model = model
             binding.clickListener = createOnClickListener(item)
             binding.executePendingBindings()
         }
@@ -52,11 +52,7 @@ class TaskAdapter(private val taskViewModel: TaskViewModel) :
         return View.OnClickListener {
             taskViewModel.taskObservable.postValue(item)
             val direction = TaskListFragmentDirections.actionTaskFragmentToTaskDetailFragment()
-            val extras = FragmentNavigator.Extras.Builder()
-                .addSharedElement(it, it.context.getString(R.string.transition_name_task))
-                .build()
-            Log.e("TaskAdapter", it.javaClass.simpleName)
-            it.findNavController().navigate(direction, extras)
+            it.findNavController().navigate(direction)
         }
     }
 

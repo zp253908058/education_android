@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import com.swpu.student.base.BaseFragment
 import com.swpu.student.databinding.FragmentTaskDetailBinding
 import com.swpu.student.vm.TaskItemViewModel
@@ -26,7 +27,9 @@ class TaskDetailFragment : BaseFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding = FragmentTaskDetailBinding.inflate(inflater, container, false)
         binding.model = taskItemViewModel
-
+        taskViewModel.taskObservable.observe(this, Observer {
+            taskItemViewModel.item = it
+        })
         return binding.root
     }
 
