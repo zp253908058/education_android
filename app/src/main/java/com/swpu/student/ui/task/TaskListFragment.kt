@@ -20,6 +20,7 @@ import com.swpu.student.vm.TaskViewModel
  */
 class TaskListFragment : NavigationFragment() {
 
+
     private val eventViewModel: EventViewModel by activityViewModels()
     private val taskViewModel: TaskViewModel by activityViewModels()
 

@@ -27,3 +27,9 @@ data class TaskInfo(
     var taskType: String = "",
     var taskEndDate: String = ""
 )
+
+data class FileInfo(
+    var id: Long = 0,
+    var fileName: String = "",
+    var filePath: String = ""
+)
